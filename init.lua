@@ -79,16 +79,17 @@ vim.opt.scrolloff = 10
 -- --
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', 'fs', '<cmd>Oil<CR>')
-vim.keymap.set('n', 'tty', '<C-w>s<cmd>terminal<CR>')
+vim.keymap.set('n', 'tty', '<C-w>s<cmd>terminal<CR>', {desc= "Opens term split"}) --open term buffer below.
 vim.keymap.set('n', 'ts', '<cmd>Telescope<CR>')
 vim.keymap.set('n', 'ms', '<cmd>Mason<CR>')
-vim.keymap.set('n', 'ga', '<cmd>!git add .<CR>')
-vim.keymap.set('n', 'gp', '<cmd>!git pull <CR>')
-vim.keymap.set('n', 'gP', '<cmd>!git push <CR>')
-vim.keymap.set('n', 'gc', '<cmd>!git commit <CR>')
+vim.keymap.set('n', 'ga', '<cmd>!git add .<CR>', {desc = "Git Add"})
+vim.keymap.set('n', 'gp', '<cmd>!git pull <CR>', {desc="Git Pull"})
+vim.keymap.set('n', 'gP', '<cmd>!git push <CR>', {desc="Git Push"})
+vim.keymap.set('n', 'gc', '<cmd>!git commit <CR>',{desc="Git Commit"})
 
 vim.keymap.set({ 'n', 'i' }, '<C-s>', '<cmd>w<CR>')
-vim.keymap.set({ 'n', 'i' }, '<C-q>', '<cmd>qa!<CR>')
+vim.keymap.set({ 'n', 'i' }, '<C-q>', '<cmd>q<CR>')
+vim.keymap.set({ 'n', 'i' }, '<C-q>q','<cmd>q<CR>')
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
