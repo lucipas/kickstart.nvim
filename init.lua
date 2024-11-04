@@ -1,36 +1,36 @@
--- -- Set <space> as the leader key
---
+-- Set <space> as the leader key
+
 -- -- See `:help mapleader`
 -- --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 -- --
 -- --
--- -- www
+-- --
 --
- vim.g.mapleader = ' '
- vim.g.maplocalleader = ' '
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 --
 -- -- Set to true if you have a Nerd Font installed and selected in the terminal
- vim.g.have_nerd_font = false
- --
+vim.g.have_nerd_font = true
+--
 -- -- Make line numbers default
- vim.opt.number = true
+vim.opt.number = true
 -- -- You can also add relative line numbers, to help with jumping.
 -- --  Experiment for yourself to see if you like it!
- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 --
 -- -- Enable mouse mode, can be useful for resizing splits for example!
- vim.opt.mouse = 'a'
+vim.opt.mouse = 'a'
 --
 -- -- Don't show the mode, since it's already in the status line
- vim.opt.showmode = false
+vim.opt.showmode = false
 --
 -- -- Sync clipboard between OS and Neovim.
 -- --  Schedule the setting after `UiEnter` because it can increase startup-time.
 -- --  Remove this option if you want your OS clipboard to remain independent.
 -- --  See `:help 'clipboard'`
 vim.schedule(function()
-   vim.opt.clipboard = 'unnamedplus'
- end)
+  vim.opt.clipboard = 'unnamedplus'
+end)
 --
 -- -- Enable break indent
 vim.opt.breakindent = true
@@ -79,17 +79,14 @@ vim.opt.scrolloff = 10
 -- --
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', 'fs', '<cmd>Oil<CR>')
-vim.keymap.set('n', 'tty', '<C-w>s<cmd>terminal<CR>', {desc= "Opens term split"}) --open term buffer below.
+vim.keymap.set('n', 'tty', '<C-w>s<cmd>edit term://powershell<CR>i', { desc = 'Opens term split' }) --open term buffer below.
 vim.keymap.set('n', 'ts', '<cmd>Telescope<CR>')
 vim.keymap.set('n', 'ms', '<cmd>Mason<CR>')
-vim.keymap.set('n', 'ga', '<cmd>!git add .<CR>', {desc = "Git Add"})
-vim.keymap.set('n', 'gp', '<cmd>!git pull <CR>', {desc="Git Pull"})
-vim.keymap.set('n', 'gP', '<cmd>!git push <CR>', {desc="Git Push"})
-vim.keymap.set('n', 'gc', '<cmd>!git commit <CR>',{desc="Git Commit"})
-
+vim.keymap.set('n', 'ga', '<cmd>!git add .<CR>', { desc = 'Git Add' })
+vim.keymap.set('n', 'gp', '<cmd>!git pull <CR>', { desc = 'Git Pull' })
+vim.keymap.set('n', 'gP', '<cmd>!git push <CR>', { desc = 'Git Push' })
+vim.keymap.set('n', 'gc', '<cmd>!git commit <CR>', { desc = 'Git Commit' })
 vim.keymap.set({ 'n', 'i' }, '<C-s>', '<cmd>w<CR>')
-vim.keymap.set({ 'n', 'i' }, '<C-q>', '<cmd>q<CR>')
-vim.keymap.set({ 'n', 'i' }, '<C-q>q','<cmd>q<CR>')
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -98,7 +95,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -662,7 +659,7 @@ require('lazy').setup({
           return 'make install_jsregexp'
         end)(),
         dependencies = {
-          -- `friendly-snippets` contains a variety of premade snippets.
+         -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
           -- {
@@ -780,7 +777,7 @@ require('lazy').setup({
   },
 
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = true } },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
@@ -829,18 +826,18 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
 
---  require 'kickstart.plugins.debug',
---  require 'kickstart.plugins.indent_line',
---  require 'kickstart.plugins.lint',
---  require 'kickstart.plugins.autopairs',
---  require 'kickstart.plugins.neo-tree',
---  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-}, { import = 'custom.plugins' },{ 
+}, { import = 'custom.plugins' }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
@@ -869,9 +866,9 @@ require('oil').setup {
   -- See :help oil-columns
   columns = {
     'icon',
-    "permissions",
-    "size",
-    "mtime",
+    'permissions',
+    'size',
+    'mtime',
   },
   -- Buffer-local options to use for oil buffers
   buf_options = {
